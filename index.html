@@ -1,163 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <title>Desastres Naturales</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+    <title>Estadisticas Covid-19</title>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="img/terrremoto.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/sequia.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/tormentadenieve.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/tornado.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/huracanes.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/incendioforestal.jpg" class="d-block w-100" alt="...">
+    <div class="container-fluid" id="app">
+        <header class="row bg-dark p-3 text-white">
+            <div class="col sm-12 col md-4">
+                <div class="media">
+                    <h4 class="display-4">
+                        <i class="fas fa-virus-slash"></i>
+                    </h4>
+                    <div class="media-body">
+                        <h5 class="display-5 mt-4">
+                            Estadisticas Covid-19
+                        </h5>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="index.html">Desastres Naturales</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="font-italic nav-link" href="index.html">Desastre Natural<span
-                                    class="sr-only">(current)</span></a><span class=""></span>
-                        </li>
-                        <li class="font-italic nav-item">
-                            <a class="nav-link" href="sequías.html">Sequías</a>
-                        </li>
-                        <li class="font-italic nav-item">
-                            <a class="nav-link" href="tornados.html">Tornados</a>
-                        </li>
-                        <li class="font-italic nav-item">
-                            <a class="nav-link" href="tormentasdenieve.html">Tormentas de Nieve</a>
-                        </li>
-                        <li class="font-italic nav-item">
-                            <a class="nav-link" href="huracanes.html">Huracanes</a>
-                        </li>
-                        <li class="font-italic nav-item">
-                            <a class="nav-link" href="incendiosforestoles.html">Incendios Forestales</a>
-                        </li>
-                        <li class="font-italic nav-item">
-                            <a class="nav-link" href="terremotos.html">Terremotos</a>
-                        </li>
-                    </ul>
+            <div class="col-sm-12 col-md-8">
+                <div class="media float-right">
+                    <div class="media-body">
+                        Aqui encontrara información de personas contagiadas,decesos,recuperados y tasa de mortalidad
+                        entre
+                        otros.
+                        <br>
+                        <select class="custom-select" v-model="paisCode" @change="paisSeleccionado()">
+                            <option v-for="pais in paisesList" :value="pais.code">{{pais.name}}</option>
+                        </select>
+                    </div>
                 </div>
-            </nav>
-
+            </div>
         </header>
-        <br>
-        <section>
-            <div class="row">
-                <aside class="d-none d-sm-none d-md-block d-lg-block d-xl-block col-md-3">
-                    <ul class="text-center list-group">
-                        <li class="bg-dark list-group-item list-group-item-active text-white">Contenido</li>
-                        <li class="bg-dark list-group-item list-group-item-active text-white">¿Qué es?</li>
-                        <li class="bg-dark list-group-item list-group-item-active text-white">Características</li>
-                        <li class="bg-dark list-group-item list-group-item-active text-white">¿Cómo se Producen?</li>
-                        <li class="bg-dark list-group-item list-group-item-active text-white">Peligros</li>
-                    </ul>
-                </aside>
-                <article class="col-md-9 col-lg-9 col-sm-16 col-xs-16"> 
-                    <h1 class="font-italic"><i class="fa fa-globe text-info"></i> Desastre Natural</h1>
-                    <hr>
-                    <small class="ml-auto">
-                        <i class="fa fa-male text-warning"></i> Evacuaciones &nbsp; &nbsp;
-                        <i class="fa fa-medkit text-active"></i> Cuidado de Salud &nbsp; &nbsp;
-                        <i class="fa fa-exclamation-triangle text-danger"></i> Alertas &nbsp; &nbsp;
-                    </small>
-                    <hr>
-                    <p class="text-justify">
-                        La definición de <strong>Desastre Natural</strong> es cualquier evento catastrófico causado por
-                        la naturaleza o los procesos naturales de la tierra. El término <strong>Desastre
-                            Natural</strong> hace referencia a las enormes pérdidas materiales y
-                        vidas humanas
-                        ocasionadas por eventos o <strong>Fenómenos Naturales,</strong> como <strong>Terremotos,
-                            Huracanes, Incendios Forestales, Tornados,</strong> entre otros… Por otra parte, algunos
-                        desastres son causados
-                        únicamente por las actividades humanas.
-                    </p>                    
-                    <figure class="figure">
-                        <img src="img/400x300.jpg" class="figure-img img-fluid rounded" alt="...">
-                        <figcaption class="figure-caption text-center">Daños Ambientales, Daños a viviendas y Perdidas
-                            Mayores.</figcaption>
-                    </figure>
-                    <hr>
-                    <h2 class="font-italic">Características</h2>
-                    <hr>
-                    <p class="text-justify">
-                        Todos los desastres naturales causan pérdidas de alguna u otra manera. Dependiendo de la
-                        gravedad, cualquier número de vidas pueden perderse debido a los desastres naturales.
-                    </p>
-                    <p class="text-justify">
-                        La caída de edificios o árboles, la congelación, ser arrastrados por avalanchas o los golpes de calor, son sólo algunos de los efectos mortales de tales desastres.
-                    </p>
-                    <figure class="figure">
-                        <img src="img/desastrescontenido.jpg" class="figure-img img-fluid rounded"
-                            alt="...">
-                        <figcaption class="figure-caption text-center">Huracan Completamente Formado</figcaption>
-                    </figure>
-                    <p class="text-justify">
-                        Algunos desastres causan más pérdidas de vidas humanas que otros, y la densidad de población afecta a la cifra de muertos también.
-                    </p>
-                    <p class="text-justify">
-                        Luego está la pérdida de la propiedad que afecta a sectores de la población, transporte, medios de subsistencia y medios de vida. Los campos saturados de agua salada después de tsunamis tardan años para poderse cultivar de nuevo.
-                    </p>
-                    <p class="text-justify">
-                        Las casas destruidas por las inundaciones, huracanes, ciclones, deslizamientos de tierra y avalanchas, erupciones volcánicas o un terremoto, a menudo quedan irreparables, o toman mucho tiempo para convertirse en habitables de nuevo. Los artículos de uso personal, objetos, vehículos, y documentos también son destruidos después de muchos desastres naturales.
-                    </p>
-                    <a class="nav-link" href="mockup.html">Ve el Mockup Dando click aquí.</a>  
-                    <br>
-                </article>
+        <section class="mb-1 p-1">
+            <div class="row p-1">
+                <div class="col-sm-12 col-md-4">
+                    <div class="card bg-secondary text-center text-white">
+                        <div class="card-body">
+                            <h4 class="card-title display-4 mt-2">
+                                <i class="fas fa-lungs-virus"></i>
+                            </h4>
+                            <h5 class="card-subtitle mb-2 display-5">
+                                Contagiados<br>
+                                {{paisDatos.latest_data.confirmed}} de {{paisDatos.population}} habitantes
+                            </h5>
+                            <p class="card-text">
+                                Última actualización <br> {{paisDatos.updated_at}}
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="card bg-success text-center text-white">
+                        <div class="card-body">
+                            <h4 class="card-title display-4 mt-2">
+                                <i class="fas fa-prescription-bottle-alt"></i>
+                            </h4>
+                            <h5 class="card-subtitle mb-2 display-5">
+                                Datos del día <br>
+                                &nbsp;
+                            </h5>
+                            <div class="row">
+                                <div class="col-sm-4 col-md-4">
+                                    <strong>
+                                        {{paisDatos.timeline[0].new_confirmed}}
+                                    </strong>
+                                    <br>
+                                    Contagiados
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <strong>
+                                        {{paisDatos.timeline[0].new_recovered}}
+                                    </strong>
+                                    <br>
+                                    Recuperados
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <strong>
+                                        {{paisDatos.timeline[0].new_deaths}}
+                                    </strong>
+                                    <br>
+                                    Fallecidos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="card bg-danger text-center text-white">
+                        <div class="card-body">
+                            <h4 class="card-title display-4 mt-2">
+                                <i class="fas fa-users"></i>
+                            </h4>
+                            <h5 class="card-subtitle mb-2 display-5">
+                                <strong>
+                                    {{paisDatos.latest_data.calculated.cases_per_million_population}} casos<br>
+                                    por cada millón de habitantes
+                                </strong>
+                            </h5>
+                            <br>
+                            &nbsp;
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-sm-6 col-md-3">
+                    <div class="card bg-danger text-center text-white">
+                        <div class="card-body">
+                            <h4 class="card-title display-4 mt-2">
+                                <i class="fas fa-hospital-user"></i>
+                            </h4>
+                            <h6 class="card-subtitle mb-2 display-5">
+                                <strong>
+                                    Casos Activos
+                                </strong>
+                            </h6>
+                            <p class="card-text">
+                                {{paisDatos.timeline[0].active}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card bg-warning text-center text-white">
+                        <div class="card-body">
+                            <h4 class="card-title display-4 mt-2">
+                                <i class="fas fa-procedures"></i>
+                            </h4>
+                            <h6 class="card-subtitle mb-2 display-5">
+                                <strong>
+                                    Casos Críticos
+                                </strong>
+                            </h6>
+                            <p class="card-text">
+                                {{paisDatos.latest_data.critical}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card bg-info text-center text-white">
+                        <div class="card-body">
+                            <h4 class="card-title display-4 mt-2">
+                                <i class="fas fa-user-md"></i>
+                            </h4>
+                            <h6 class="card-subtitle mb-2 display-5">
+                                <strong>
+                                    Casos Recuperados <br> {{paisDatos.latest_data.recovered}},
+                                    {{
+                                    parseFloat(paisDatos.latest_data.calculated.recovery_rate).toFixed(2)
+                                    }}%
+                                </strong>
+                            </h6>
+                            <p class="card-text">&nbsp; </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card bg-secondary text-center text-white">
+                        <div class="card-body">
+                            <h4 class="card-title display-4 mt-2">
+                                <i class="fas fa-church"></i>
+                            </h4>
+                            <h6 class="card-subtitle mb-2 display-5">
+                                <strong>
+                                    Casos Fallecidos <br> {{paisDatos.latest_data.deaths}}
+                                </strong>
+                            </h6>
+                            <p class="card-text">
+                                {{
+                                parseFloat(paisDatos.latest_data.calculated.death_rate).toFixed(2)
+                                }}%
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-        <footer class="bg-dark">
-            <hr>   
-            <p class="text-center text-white">
-                Diseñador Web: Kenneth Eduardo Núñez Najarro. 
-                <br>
-                Todos los Derechos Reservados 2021.
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer class="footer fixed-bottom bg-dark text-center text-white p-1">
+            <p class="m-0">
+                App web Diseñada por Kenneth Nuñez &copy 2021. Todos los datos han sido obtenidos desde la API de
+                <a href="http://https://about-corona.net/" target="_blank"
+                    rel="noopener noreferrer">about-corona.net</a>
             </p>
-            <hr>
         </footer>
     </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script type="text/javascript">
+        var vueApp = new Vue({
+            el: "#app",
+            data: {
+                paisesList: [],
+                paisCode: "HN",
+                paisDatos: [],
+            },
+            created: function () {
+                var url = "https://corona-api.com/countries/HN";
+                axios.get(url, { header: { "accept": "application/json" } })
+                    .then(function (response) {
+                        vueApp.paisDatos = response.data.data;
+                    });
+                url = "https://corona-api.com/countries";
+                axios.get(url, { header: { "accept": "application/json" } })
+                    .then(function (response) {
+                        vueApp.paisesList = response.data.data;
+                    });
+            },
+            methods: {
+                paisSeleccionado: function () {
+                    vueApp.paisDatos = [];
+                    var url = "https://corona-api.com/countries/" + vueApp.paisCode;
+                    axios.get(url, { header: { "accept": "application/json" } })
+                        .then(function (response) {
+                            vueApp.paisDatos = response.data.data;
+                        });
+                }
+            },
+        })
+    </script>
 </body>
 
 </html>
